@@ -4,3 +4,6 @@
 [submodule "tools/cde"]
 	path = tools/cde
 	url = https://github.com/chipsalliance/cde.git
+[submodule "generators/nvdla-wrapper"]
+	path = generators/nvdla
+	url = https://github.com/ucb-bar/nvdla-wrapper.git

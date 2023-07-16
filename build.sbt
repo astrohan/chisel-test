@@ -89,6 +89,12 @@ lazy val rocketLibDeps = (rocketchip / Keys.libraryDependencies)
 
 
 
+lazy val nvdla = (project in file("generators/nvdla"))
+  .dependsOn(rocketchip)
+  .settings(libraryDependencies ++= rocketLibDeps.value)
+  .settings(commonSettings)
+
+
 
 //-------------------------------------------------
 // my project
@@ -96,8 +102,13 @@ lazy val rocketLibDeps = (rocketchip / Keys.libraryDependencies)
 // This gives us a nicer handle to the root project instead of using the implicit one
 lazy val testRoot = Project("testRoot", file("."))
 
-lazy val test = (project in file("generators/test"))
+lazy val roma = (project in file("tools/roma"))
   .dependsOn(rocketchip)
+  .settings(libraryDependencies ++= rocketLibDeps.value)
+  .settings(commonSettings)
+
+lazy val test = (project in file("generators/test"))
+  .dependsOn(rocketchip, nvdla)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(chiselSettings, commonSettings)
   .settings(name := "test")
